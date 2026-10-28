@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const page = await getCollection('pages', 'index');
+const services = await getCollection('services');
+const team = await getCollection('team');
+const settings = await getCollection('settings', 'site');
+
+const pageData = page[0]?.data || {};
+const settingsData = settings[0]?.data || {};
+const servicesData = services.map(s => s.data);
+const teamData = team[0]?.data || {};
+---
+
+<Layout title={pageData.title || settingsData.siteTitle || 'Elektro-Prüfung Jan Kelly'} description={pageData.description || settingsData.siteDescription || ''}>
+  <Header logo={settingsData.logo} navLinks={[
+    { href: '#leistungen', label: 'Leistungen' },
+    { href: '#ueber-mich', label: 'Über mich' },
+    { href: '#kontakt', label: 'Kontakt' },
+  ]} />
+  
+  <Hero 
+    title={pageData.hero?.title || 'DGUV V3 Prüfung – Sicher. Gesetzlich. Professionell.'}
+    subtitle={pageData.hero?.subtitle || 'Als zertifizierter Elektrofachbetrieb prüfen wir Ihre elektrischen Betriebsmittel, Maschinen und Anlagen nach DGUV Vorschrift 3. Rechtssicher, dokumentiert, deutschlandweit.'}
+    ctaText={pageData.hero?.ctaText || 'Jetzt Prüfung anfragen'}
+    ctaLink={pageData.hero?.ctaLink || '#kontakt'}
+    image={pageData.hero?.image}
+  />
+  
+  <Services
+    title={pageData.services?.title || 'Warum DGUV V3 Prüfung?'}
+    description={pageData.services?.description || 'Die DGUV Vorschrift 3 (ehemals BGV A3) schreibt vor, dass elektrische Betriebsmittel und Anlagen regelmäßig auf ihren sicheren Zustand geprüft werden müssen. Das schützt Ihre Mitarbeiter, Ihr Unternehmen und erfüllt gesetzliche Pflichten.'}
+    services={servicesData}
+  />
+  
+  {teamData.name && (
+    <About
+      name={teamData.name}
+      role={teamData.role}
+      bio={teamData.bio}
+      photo={teamData.photo}
+    />
+  )}
+  
+  <CTA
+    title={pageData.cta?.title || 'Bereit für Ihre Prüfung?'}
+    subtitle={pageData.cta?.subtitle || 'Kontaktieren Sie mich für ein unverbindliches Angebot oder eine kostenlose Erstberatung.'}
+    buttonText={pageData.cta?.buttonText || 'Kontakt aufnehmen'}
+    buttonLink={pageData.cta?.buttonLink || '#kontakt'}
+  />
+  
+  <Contact
+    email={settingsData.contactEmail}
+    phone={settingsData.contactPhone}
+    address={settingsData.address}
+    contactEmail={settingsData.contactEmail}
+  />
+  
+  <Footer
+    email={settingsData.contactEmail}
+    address={settingsData.address}
+  />
+</Layout>

@@ -1,0 +1,17 @@
+---
+const { name, role, bio, photo } = Astro.props;
+---
+<section id="ueber-mich" class="section about">
+  <div class="container">
+    <div class="about-content">
+      <div class="about-image">
+        {photo && <img src={photo} alt={name} />}
+      </div>
+      <div class="about-text">
+        <h2>{name}</h2>
+        <p style="color: var(--color-accent); font-weight: 600; margin-bottom: var(--spacing-md);">{role}</p>
+        <div class="prose" set:html={bio} />
+      </div>
+    </div>
+  </div>
+</section>

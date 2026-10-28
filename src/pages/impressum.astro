@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const settings = await getCollection('settings', 'site');
+const settingsData = settings[0]?.data || {};
+---
+
+<Layout title="Impressum" description="Impressum der Elektro-Prüfung Jan Kelly">
+  <Header logo={settingsData.logo} navLinks={[
+    { href: '#leistungen', label: 'Leistungen' },
+    { href: '#ueber-mich', label: 'Über mich' },
+    { href: '#kontakt', label: 'Kontakt' },
+  ]} />
+  
+  <main style="padding-top: 72px;">
+    <div class="legal-content">
+      <h1>Impressum</h1>
+      <div set:html={settingsData.imprintText} />
+    </div>
+  </main>
+  
+  <Footer email={settingsData.contactEmail} address={settingsData.address} />
+</Layout>

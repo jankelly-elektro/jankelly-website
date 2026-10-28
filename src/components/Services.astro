@@ -1,0 +1,24 @@
+---
+const { title, description, services } = Astro.props;
+---
+<section id="leistungen" class="section services">
+  <div class="container">
+    <div class="section-title">
+      <h2>{title}</h2>
+    </div>
+    {description && <p style="text-align: center; color: var(--color-text-light); max-width: 700px; margin: 0 auto var(--spacing-xl);">{description}</p>}
+    <div class="services-grid">
+      {services.map(service => (
+        <article class="service-card">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-icon={service.icon}>
+              <use href={`/icons/lucide.svg#{service.icon}`} />
+            </svg>
+          </div>
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

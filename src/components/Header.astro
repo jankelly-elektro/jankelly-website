@@ -1,0 +1,23 @@
+---
+const { logo, navLinks } = Astro.props;
+---
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      {logo && <img src={logo} alt="Logo" />}
+      <span>Elektro-Prüfung Jan Kelly</span>
+    </a>
+    <nav class="nav" id="main-nav">
+      {navLinks.map(link => (
+        <a href={link.href} class={`nav-link ${link.active ? 'active' : ''}`}>{link.label}</a>
+      ))}
+    </nav>
+    <button class="mobile-menu-btn" aria-label="Menü öffnen" onclick="document.getElementById('main-nav').classList.toggle('open')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+</header>

@@ -1,0 +1,43 @@
+---
+const { imprintLink, privacyLink, email, address } = Astro.props;
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <strong style="font-size: 1.125rem;">Elektro-Prüfung Jan Kelly</strong>
+        <p>Ihr zertifizierter Partner für DGUV V3 Prüfungen. Rechtssicher, dokumentiert, deutschlandweit.</p>
+      </div>
+      <nav>
+        <h4 class="footer-title">Leistungen</h4>
+        <ul class="footer-links">
+          <li><a href="/#leistungen">Ortsveränderliche Betriebsmittel</a></li>
+          <li><a href="/#leistungen">Ortsfeste Anlagen & Maschinen</a></li>
+          <li><a href="/#leistungen">Prüfung nachts / Wochenende</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <h4 class="footer-title">Unternehmen</h4>
+        <ul class="footer-links">
+          <li><a href="/#ueber-mich">Über mich</a></li>
+          <li><a href="/#kontakt">Kontakt</a></li>
+          <li><a href="/impressum">Impressum</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <h4 class="footer-title">Kontakt</h4>
+        <ul class="footer-links">
+          <li><a href={`mailto:${email}`}>{email}</a></li>
+          {address && <li>{address}</li>}
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {new Date().getFullYear()} Elektro-Prüfung Jan Kelly. Alle Rechte vorbehalten.</span>
+      <div class="footer-legal">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</footer>

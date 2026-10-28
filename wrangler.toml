@@ -1,0 +1,17 @@
+name = "jankelly-website"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "./dist"
+
+[vars]
+CONTACT_EMAIL = "dguvv3@jankelly.de"
+
+# Build command
+[build]
+command = "npm run build"
+
+# Functions directory
+[functions]
+directory = "./functions"
+
+# Node.js compatibility
+node_compat = true

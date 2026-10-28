@@ -1,0 +1,22 @@
+---
+const { title, subtitle, ctaText, ctaLink, image } = Astro.props;
+---
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>{title}</h1>
+        <p>{subtitle}</p>
+        <div class="hero-buttons">
+          <a href={ctaLink} class="btn btn-primary">{ctaText}</a>
+          <a href="#leistungen" class="btn btn-outline">Leistungen ansehen</a>
+        </div>
+      </div>
+      {image && (
+        <div class="hero-image">
+          <img src={image} alt="" loading="eager" />
+        </div>
+      )}
+    </div>
+  </div>
+</section>
